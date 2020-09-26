@@ -1,29 +1,32 @@
 Object.defineProperty(window, "MySweetApp",
     {value: "v1.0.0", writable: true});
 
-function deliveryMethod() {
+function deliveryMethod(): string {
     // TODO
     return "overnight";
 }
 
-function shipWeight() {
-    const el = document.getElementById('weight') as HTMLDivElement;
+function shipWeight(): number {
+    const el: HTMLDivElement = document.getElementById('weight') as HTMLDivElement;
     if (!el) {
         return 0;
     }
-    return parseInt(el.innerHTML);
+    return parseInt(el.innerHTML, 10);
 }
 
-function sendUpdates(emailAddr: string | string[]) {
-    function sendEmail(addr: string) {
+function sendUpdates(emailAddr: string | string[]): void {
+    function sendEmail(addr: string): void {
+        // tslint:disable-next-line:no-console
         console.log(`Shipping to ${addr} via ${deliveryMethod() || "standard"} delivery`);
 
         if (shipWeight() > 100) {
+            // tslint:disable-next-line:no-console
             console.log("WARNING: Oversize package");
         }
     }
 
     if (Array.isArray(emailAddr)) {
+        // @ts-ignore
         emailAddr.forEach((val, idx) => {
             sendEmail(val.trim());
         });
@@ -31,3 +34,5 @@ function sendUpdates(emailAddr: string | string[]) {
         sendEmail(emailAddr.trim());
     }
 }
+
+const a  = [1,2,3,4].includes(1)
