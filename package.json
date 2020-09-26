@@ -2,7 +2,7 @@
   "name": "ts260920",
   "version": "1.0.0",
   "description": "",
-  "main": "example.ts",
+  "main": "old/1-start/example.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "ts-node": "^9.0.0",
     "tslint": "^6.1.3",
     "typescript": "^4.0.3"
   }

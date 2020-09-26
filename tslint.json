@@ -5,7 +5,7 @@
     ],
     "jsRules": {},
     "rules": {
-        "typedef": [true, "call-signature", "parameter", "member-variable-declaration", "variable-declaration"]
+        "typedef": [false, "call-signature", "parameter", "member-variable-declaration", "variable-declaration"]
 
     },
     "rulesDirectory": []

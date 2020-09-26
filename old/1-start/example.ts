@@ -7,7 +7,7 @@ function deliveryMethod(): string {
 }
 
 function shipWeight(): number {
-    const el: HTMLDivElement = document.getElementById('weight') as HTMLDivElement;
+    const el: HTMLElement | null = document.getElementById('weight');
     if (!el) {
         return 0;
     }
@@ -35,4 +35,4 @@ function sendUpdates(emailAddr: string | string[]): void {
     }
 }
 
-const a  = [1,2,3,4].includes(1)
+const a = [1, 2, 3, 4].includes(1)
