@@ -1,4 +1,4 @@
-function sleep(ms: number) {
+function sleep(ms: number): Promise<void> {
     return new Promise(resolve => {
         setTimeout(resolve, ms);
     })
@@ -11,7 +11,7 @@ async function* getItemsReallySlowly<T>(items: Iterable<T>): AsyncIterableIterat
     }
 }
 
-export default async function speakRealSloth(items: string[]) {
+export default async function speakRealSloth(items: string[]): Promise<void> {
     for await (const item of getItemsReallySlowly(items)) {
         console.log(item);
     }
