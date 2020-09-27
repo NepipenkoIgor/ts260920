@@ -58,22 +58,21 @@
 
     /* Module Resolution Options */
     // "moduleResolution": "node",            /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */
-    "baseUrl": "./",                       /* Base directory to resolve non-absolute module names. */
-     "paths": {
-       "@core/*": [
-         "src/module-1/*"
-       ]
-     },                           /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
+    "baseUrl": "./",
+    /* Base directory to resolve non-absolute module names. */
+    "paths": {
+      "@core/*": [
+        "src/module-1/*"
+      ]
+    },
+    /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
     // "rootDirs": [],                        /* List of root folders whose combined content represents the structure of the project at runtime. */
-//    "typeRoots": [
-//      "./custom-types",
-//      "node_modules/@types"
-//    ],
+    //    "typeRoots": [
+    //      "./custom-types",
+    //      "node_modules/@types"
+    //    ],
     /* List of folders to include type definitions from. */
-//    "types": [
-//      "my-jquery",
-//      "jquery"
-//    ],
+    "types": [],
     /* Type declaration files to be included in compilation. */
     // "allowSyntheticDefaultImports": true,  /* Allow default imports from modules with no default export. This does not affect code emit, just typechecking. */
     "esModuleInterop": true,
@@ -88,8 +87,9 @@
     // "inlineSources": true,                 /* Emit the source alongside the sourcemaps within a single file; requires '--inlineSourceMap' or '--sourceMap' to be set. */
 
     /* Experimental Options */
-    // "experimentalDecorators": true,        /* Enables experimental support for ES7 decorators. */
-    // "emitDecoratorMetadata": true,         /* Enables experimental support for emitting type metadata for decorators. */
+    "experimentalDecorators": true,
+    /* Enables experimental support for ES7 decorators. */
+    "emitDecoratorMetadata": true,         /* Enables experimental support for emitting type metadata for decorators. */
 
     /* Advanced Options */
     "skipLibCheck": true,

@@ -1,104 +1,48 @@
-type Constructable = new (...args: any[]) => any;
+import { CheckTypeInRuntime, Debounce, LogInputEvent, LogToSentry, SavePersistence } from "./decorators";
+import { Range, Validate } from './utils';
 
-function Timestamped<BaseClass extends Constructable>(BC: BaseClass) {
-    return class extends BC {
-        public timestamped = new Date()
-    }
-}
+class Search {
 
-function Tagged<BaseClass extends Constructable>(BC: BaseClass) {
-    return class extends BC {
-        public tags = ['ts', 'angular']
-    }
-}
-
-interface IBasePoint {
-    readonly x: number
-}
-
-class BasePoint implements IBasePoint {
-    #z: number;
-
-    prop: IBasePoint = {} as IBasePoint;
+    @CheckTypeInRuntime
+    @SavePersistence
+    public initialValue!: string;
 
     public constructor(
-        public readonly x: number,
-        protected readonly y: number,
-        z: number,
+        private readonly input: HTMLInputElement
     ) {
-        this.#z = z;
+        this.input.addEventListener('input', this.onSearch.bind(this))
+        console.log('send to server ===>', this.initialValue)
     }
 
-    public onInit(): this {
-        // this.x = 1;
-        // this.y = 1;
-        return this;
-    }
-
-    public sum(): number {
-        return this.x + this.y + this.#z;
+    @Debounce(300)
+    @LogInputEvent
+    @LogToSentry
+    private onSearch(_e: Event): void {
+        this.initialValue = (_e.target as HTMLInputElement).value;
     }
 }
 
-// tslint:disable-next-line:max-classes-per-file
-class Point extends Timestamped(Tagged(BasePoint)) {
-    public sum(): number {
-        return super.sum();
+const inputEl = document.querySelector('input') as HTMLInputElement;
+
+const searchWidget = new Search(inputEl);
+
+setTimeout(() => {
+    (searchWidget.initialValue as any) = 1;
+}, 7000)
+
+
+class Calculator {
+    @Validate
+    public updatePercentage(
+        _oldValue: number,
+        @Range(30, 70) _newValue: number
+    ) {
     }
 }
 
-const p1 = new Point(1, 2, 1);
+const calc = new Calculator();
+calc.updatePercentage(0, 40);
 
-// tslint:disable-next-line:max-classes-per-file
-class Singleton {
-    private static instance: Singleton;
-
-    private constructor() {
-    }
-
-    public static getInstance(): Singleton {
-        if (!Singleton.instance) {
-            Singleton.instance = new Singleton();
-        }
-        return Singleton.instance;
-    }
-
-}
-
-const inst1 = Singleton.getInstance();
-const inst2 = Singleton.getInstance();
-const inst3 = Singleton.getInstance();
-const inst4 = Singleton.getInstance();
-
-console.log(inst2 === inst4);
-console.log(p1.timestamped);
-console.log(p1.tags);
-
-
-abstract class AbstractControl<T> {
-    public abstract model: T;
-
-    public abstract getValue(): T;
-
-    public onFocus() {
-        // some actions
-    }
-
-    public onBlur() {
-        // some actions
-    }
-}
-
-abstract class FullAbstract<T> extends AbstractControl<T> {
-    public abstract setValue(): T;
-}
-
-
-class MHDropDown extends FullAbstract<{ name: string, lable: string }[]> {
-    public model = [];
-
-    public getValue(): { name: string; lable: string }[] {
-        return [];
-    }
-}
-
+setTimeout(() => {
+    calc.updatePercentage(40, 80);
+}, 7000)
