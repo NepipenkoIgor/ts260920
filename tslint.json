@@ -1,12 +1,18 @@
 {
-    "defaultSeverity": "error",
-    "extends": [
-        "tslint:recommended"
+  "defaultSeverity": "error",
+  "extends": [
+    "tslint:recommended"
+  ],
+  "jsRules": {},
+  "rules": {
+    "typedef": [
+      false,
+      "call-signature",
+      "parameter",
+      "member-variable-declaration",
+      "variable-declaration"
     ],
-    "jsRules": {},
-    "rules": {
-        "typedef": [false, "call-signature", "parameter", "member-variable-declaration", "variable-declaration"]
-
-    },
-    "rulesDirectory": []
+    "max-classes-per-file": false
+  },
+  "rulesDirectory": []
 }
